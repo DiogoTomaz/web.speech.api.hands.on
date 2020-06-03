@@ -1,0 +1,48 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+  <button (click)="onListen()" [class.listening]="isListening" [class.muted]="!isListening">
+    <fa-icon [icon]="['fas', 'microphone']" size="6x"></fa-icon>
+  </button>
+  <button (click)="onReset()">
+    <fa-icon [icon]="['fas', 'broom']" size="6x"></fa-icon>
+  </button>
+</div>
+<select name="language" id="language" (change)="onLanguageChange($event.target.value)" >
+  <option value="en">English</option>
+  <option value="fr">French</option>
+  <option value="pt">Portuguese</option>
+</select>
+
+<form [formGroup]="searchForm">
+    <label>Policyholder Id</label>
+    <input type="number" id="txtPolicyholderId" formControlName="policyholderId" required>
+</form>
+
+<div class="col-md-12">
+    <table id="people">
+        <thead>
+            <tr>
+                <th scope="col">Policyholder number</th>
+                <th scope="col">First name</th>
+                <th scope="col">Last name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let partner of partners; let i = index;">
+                <td id="policyholder-id-{{i}}">
+                    {{  partner.policyholderId }}
+                </td>
+                <td id="name-{{i}}">
+                    {{  partner.firstName }}
+                </td>
+                <td id="address-{{i}}">
+                    {{ partner.lastName }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
